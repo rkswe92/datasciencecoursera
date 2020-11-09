@@ -45,4 +45,15 @@ names(vect2) <- c("foo", "bar", "norf") #naming unnamed vector
 identical(vect,vect2) #function to check if two vectors are Identical
 vect["bar"] #gives 2nd index
 vect[c("foo","bar")]
-
+#7
+my_vector<-1:20
+dim(my_vector) # a vector wont be having a dimentions
+length(my_vector) #gives length of the vector
+dim(my_vector)<- c(4,5) #converting vector to a 4X5 Matrix
+class(my_vector) #returns the object type
+my_matrix2<-matrix(data=1:20,nrow = 4,ncol = 5) #matrix creation
+patients<-c("Bill","Gina","Kelly","Sean") #adding column names
+cbind(patients,my_matrix) #this fucntion binds the new column to the matrix
+my_data<-data.frame(patients,my_matrix) #separates charactor vectors from numberics
+cnames<-c("patient","age","weight","bp","rating","test") #adding column names
+colnames(my_data)<-cnames
