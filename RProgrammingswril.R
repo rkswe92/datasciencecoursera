@@ -18,7 +18,7 @@ seq(along.with = my_seq)
 seq_along(my_seq)
 
 rep(c(0,1,2),times=10) #replicates a number or vector n times
-rep(c(0,1,2),each=10) # to replicate each n times
+rep(c(0,1,2),each=10) # to replicate each n times 
 
 #4
 my_char<-c("My","name","is")
