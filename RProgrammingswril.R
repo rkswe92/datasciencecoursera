@@ -6,7 +6,7 @@ args(list.files) # Type args(list.files) to see the arguments to list.files.
 setwd("testdir") #Set your working directory to "testdir" with the setwd() command.
 file.create("mytest.R") #Create a file in your working directory called "mytest.R" using the file.create()
 file.exists("mytest.R")# Check to see if "mytest.R" exists in the working directory using the
-                       #file.exists() 
+#file.exists() 
 file.info("mytest.R") # Access information about the file "mytest.R" by using file.info(). 
 #Lesson 3
 seq(0,10, by=0.5)
