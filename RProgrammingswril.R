@@ -62,3 +62,28 @@ my_data <-
 cnames <-
         c("patient", "age", "weight", "bp", "rating", "test") #adding column names
 colnames(my_data) <- cnames
+
+#8 Logical operators
+# always AND is executed first than OR
+5>8 ||6!=8 && 4>3.9
+#isTRUE() function to check the logical expression1
+isTRUE(6>4)
+identical(TRUE,TRUE) # functions checks for object and returns true if they are identical
+xor(TRUE,FALSE) # If one argument evaluates to TRUE and one argument evaluates to FALSE, then this
+ #function will return TRUE, otherwise it will return FALSE
+ints<-sample(10) # sample functions returns samples of ints
+which(ints>7)    # which() function to find the indices of ints
+any(ints<0) #any() function to see if any of the elements of ints
+all(ints>0) #all() function to see if all of the elements of ints
+#9 Functions
+#If you want to see the source code for any function, just type the
+# function name without any arguments or parentheses
+args(function_name) #use this function to get the info about arguments of a function
+telegram <- function(...){ #ellipsis operator
+           paste(...,"START",sep="", collapse = NULL,"STOP")
+}
+# User-defined binary operators have the following syntax:
+#      %[whatever]% 
+"%p%" <- function(lf,rt){ 
+        paste(lf,sep=" ",collapse = NULL,rt)
+} # call -> "r" %p% "p" 
