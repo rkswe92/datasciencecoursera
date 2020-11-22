@@ -87,3 +87,22 @@ telegram <- function(...){ #ellipsis operator
 "%p%" <- function(lf,rt){ 
         paste(lf,sep=" ",collapse = NULL,rt)
 } # call -> "r" %p% "p" 
+#9 Date & Time
+#Dates are represented by the 'Date' class and times are represented by the 'POSIXct'
+#and 'POSIXlt' classes
+d1<-Sys.Date() #gives current date
+class(d1) # gives the type of d1
+unclass(d1) #gives the no.of days from 1970-01-01
+d2 <- as.Date("1969-01-01") # if you want to try any date before 1970 we need to use as.Date() to have that date
+t1<-Sys.time() # You can access the current date and time using the Sys.time() function with no arguments
+class(t1) #by default it is POSIXct is the type
+t2<- as.POSIXlt(Sys.time()) # to have it in POSIXlt format we can use this function
+unclass(t2) # both t1,t2 show same value but Posixlt unclass function gives more option to get various metadata info of the date & time
+str(unclass(t2)) # t2$min
+weekdays(d1) # returns day of the week
+months(d1) # returns month
+quarters(t2) #returns Quater of the year
+t3<-"October 17, 1986 08:24"
+t4<-strptime(t3,"%B %d, %Y %H:%M") #strptime converts the normal unformatted date time into a formatted Posixlt format
+difftime(Sys.time(),t1,units='days') #returns diff in days between two
+Sys.time()-t1 # arthimetic operations can be applied
