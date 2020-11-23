@@ -9,10 +9,10 @@ pollutantmean<-function(directory, pollutant,id){
                 df<-read.csv(newpath) 
                 df_pollutant<-df[pollutant]
                 vec<-!is.na(df[pollutant])
-                new_df<- data.frame(df_pollutant[vec])
-                if(!is.null(old_df))
+                new_df<- df_pollutant[vec]
+                if(!is.null(old_df)) # for the first time dont join
                 {
-                        df<- rbind(old_df,new_df)  
+                        df<- c(old_df,new_df)  # joining old and new pollutant values
                 }
                 else
                 {
@@ -21,5 +21,5 @@ pollutantmean<-function(directory, pollutant,id){
                 old_df<-df
                
         }
-        mean(as.vector(t(df)))
+        mean(df) #applied only on vectors cannot apply on data frames
 }
