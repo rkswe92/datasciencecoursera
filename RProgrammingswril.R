@@ -8,6 +8,7 @@ file.create("mytest.R") #Create a file in your working directory called "mytest.
 file.exists("mytest.R")# Check to see if "mytest.R" exists in the working directory using the
 #file.exists()
 file.info("mytest.R") # Access information about the file "mytest.R" by using file.info().
+
 #Lesson 3
 seq(0, 10, by = 0.5)
 my_seq <- seq(5, 10, length = 30)
@@ -26,12 +27,14 @@ paste(my_char, collapse = " ")
 paste("Hello", "world!", sep = " ")  # separate attribute
 paste(c(1:3), c("X", "Y", "Z"), sep = "") # concatenating two vectors
 paste(LETTERS, 1:4, sep = "-")
+
 #5
 y <-
         rnorm(1000) #drawing 1000 inputs from standard normal distribution
 my_data <- sample(c(y, z), 100) #drawing samples
 my_na <- is.na(my_data) #to find all the NA in data
 sum(my_na) #sum function
+
 #6
 x[is.na(x)] #returns all NA subset vectors
 x[!is.na(x) & x > 0]
@@ -46,6 +49,7 @@ names(vect2) <- c("foo", "bar", "norf") #naming unnamed vector
 identical(vect, vect2) #function to check if two vectors are Identical
 vect["bar"] #gives 2nd index
 vect[c("foo", "bar")]
+
 #7
 my_vector <- 1:20
 dim(my_vector) # a vector wont be having a dimentions
@@ -75,6 +79,7 @@ ints<-sample(10) # sample functions returns samples of ints
 which(ints>7)    # which() function to find the indices of ints
 any(ints<0) #any() function to see if any of the elements of ints
 all(ints>0) #all() function to see if all of the elements of ints
+
 #9 Functions
 #If you want to see the source code for any function, just type the
 # function name without any arguments or parentheses
@@ -87,6 +92,7 @@ telegram <- function(...){ #ellipsis operator
 "%p%" <- function(lf,rt){ 
         paste(lf,sep=" ",collapse = NULL,rt)
 } # call -> "r" %p% "p" 
+
 #9 Date & Time
 #Dates are represented by the 'Date' class and times are represented by the 'POSIXct'
 #and 'POSIXlt' classes
