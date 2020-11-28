@@ -112,3 +112,23 @@ t3<-"October 17, 1986 08:24"
 t4<-strptime(t3,"%B %d, %Y %H:%M") #strptime converts the normal unformatted date time into a formatted Posixlt format
 difftime(Sys.time(),t1,units='days') #returns diff in days between two
 Sys.time()-t1 # arthimetic operations can be applied
+
+#10 lapply and sapply
+class(flags) # returns dimentions of the df
+cls_list<- lapply(flags, class) # lapply takes input as list and returns output as list after applying the function on each column
+cls_vect<-sapply(flags,class) #sapply takes input as list and returns output as vector after applying the fucntion on each coulmn
+flag_colors<- flags[,11:17] # returns dataframe from the columns 11 to 17
+shape_mat<-lapply(flag_shapes,range) #range function will return min and mix values
+unique(c(3,4,5,5,5,6,6)) # unique funtion returns unique elements from a vector
+sapply(unique_vals, length) # length function returns the length of the column
+lapply(unique_vals, function(elem) elem[2]) # custom function example  
+
+#11 vapply and mapply
+vapply(flags,class, character(1)) #vapply takes input as list and returns vector in specific class type and it requires us to mention the type explicity before execution
+tapply(flags$animate,flags$landmass,mean) # Use tapply(flags$animate, flags$landmass, mean) to apply the mean function to
+                                          #| the 'animate' variable separately for each of the six landmass groups, thus giving us the proportion of flags containing an animate image WITHIN each landmass group.
+#tapply returns mean of animate for each of the landmass categories
+tapply(flags$population,flags$red,summary) #returns the summary of the population with and without red color
+tapply(flags$population, flags$landmass, summary) #returns the summary of the population differnent land mass
+
+
