@@ -130,5 +130,6 @@ tapply(flags$animate,flags$landmass,mean) # Use tapply(flags$animate, flags$land
 #tapply returns mean of animate for each of the landmass categories
 tapply(flags$population,flags$red,summary) #returns the summary of the population with and without red color
 tapply(flags$population, flags$landmass, summary) #returns the summary of the population differnent land mass
+with(mtcars,tapply(mpg,cyl,mean)) # with function can use to facilitate the same as above
 
 
