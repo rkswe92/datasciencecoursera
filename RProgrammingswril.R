@@ -132,4 +132,8 @@ tapply(flags$population,flags$red,summary) #returns the summary of the populatio
 tapply(flags$population, flags$landmass, summary) #returns the summary of the population differnent land mass
 with(mtcars,tapply(mpg,cyl,mean)) # with function can use to facilitate the same as above
 
+#11 stimulation and profiling  
+str   # str is a structure fucntion which is just like summary
+set.seed(1) # this allows us to get the same set of random numbers again 
+            # based on the seed
 
