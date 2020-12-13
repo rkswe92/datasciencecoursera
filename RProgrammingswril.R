@@ -137,3 +137,14 @@ str   # str is a structure fucntion which is just like summary
 set.seed(1) # this allows us to get the same set of random numbers again 
             # based on the seed
 
+#12 look for data
+head(plants,6) # returns top 6 rows from plants DF
+dim(plants) # returns #rows and #columns
+nrows(plants) # returns number of rows
+ncol(plants) # return number of columns
+object.size(plants) # returns the memory size occupied by DF
+tail(plants,15) #returns last x items from the plants DF
+summary(plants) #returns the consolidated report of all columns details their type,length,mean,median,NA`s
+table(plants$Active_Growth_Period) #returns the list of categorial variables and their repeating count
+str(plants) #this gives a overall meta info of the data frame very powerful command which helps us understand the content of the dataset,function, etc
+
