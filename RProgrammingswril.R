@@ -148,3 +148,26 @@ summary(plants) #returns the consolidated report of all columns details their ty
 table(plants$Active_Growth_Period) #returns the list of categorial variables and their repeating count
 str(plants) #this gives a overall meta info of the data frame very powerful command which helps us understand the content of the dataset,function, etc
 
+#13 Simulation
+sample(1:6,4,replace = TRUE) # samples randomly selects 4 numbers between 1 to 6, with replacement
+sample(1:20,10) #If replace parameter is not mentioned then default replacement=false, So no repeatation
+flips<-sample(c(0,1),100,replace=TRUE,c(0.3,0.7)) #we can use probabilty to a sample as well
+flips2<-rbinom(100,size=1,prob=0.7) # rbion binomial function can be used whenever there is a 2 outcomes with repeated experiments
+rnorm(10,100,25) #random distribution with Mean and sd default mean=0,sd=1
+rpois(5,10) #random poisson distribution
+my_pois<-replicate(100, rpois(5, 10)) # to repeat the rpois 100 times we use replicate function
+cm<-colMeans(my_pois) #returns mean of all columns
+hist(cm) #plots a histogram against the means
+#13 graphs
+head(cars)
+plot(cars) # scattered plot fucntion =>plot() plots a graph on Dist vs speed
+plot(x=cars$speed,y=cars$dist)
+plot(x=cars$speed,y=cars$dist,xlab = "Speed",ylab = "Stopping Distance") #adding the labels to X and Y axis
+plot(cars,main="My Plot") #adding Main Tittle to the graph
+plot(cars,sub="My Plot Subtitle") #adding subtittle to the graph
+plot(cars,col=2) #coloring the points in the graph
+plot(cars,xlim=c(10,15)) #limits the values of X between 10 to 15
+plot(cars,pch=2) #uses plotting points as triangles
+boxplot(formula=mpg~cyl,data = mtcars) #box plot formula specifies the x-axis and y-axis columns
+hist(cars$mpg) #hist is a histogram graph which is usally used with single columns
+
