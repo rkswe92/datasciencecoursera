@@ -171,3 +171,9 @@ plot(cars,pch=2) #uses plotting points as triangles
 boxplot(formula=mpg~cyl,data = mtcars) #box plot formula specifies the x-axis and y-axis columns
 hist(cars$mpg) #hist is a histogram graph which is usally used with single columns
 
+#Always apply complete.cases(core_df) after selecting your required columns dont apply on all columns this can lead to data loss on required column
+# eg      Name  Age Sex
+#          RK   NA   M
+#          SK   12   F
+#And you want only filter based on Name and Sex and now if you apply complete.cases(core_df) on entire columns you will lose
+# information of entire first record as there is a NA on Age instead you have to select only Name and Sex and apply complete.cases(core_df)
