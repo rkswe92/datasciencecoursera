@@ -177,3 +177,69 @@ hist(cars$mpg) #hist is a histogram graph which is usally used with single colum
 #          SK   12   F
 #And you want only filter based on Name and Sex and now if you apply complete.cases(core_df) on entire columns you will lose
 # information of entire first record as there is a NA on Age instead you have to select only Name and Sex and apply complete.cases(core_df)
+
+
+
+#============================================================================================================================================================
+#New Course Start
+#Getting data Cleaned
+#dplyr's package five main functions
+# path2csv<-"C:/Users/Ravikanth/OneDrive/Documents/R/win-library/4.0/swirl/Courses/Getting_and_Cleaning_Data/Manipulating_Data_with_dplyr/2014-07-08.csv"
+mydf<-read.csv(path2csv,stringsAsFactors = FALSE) #loads the CSV from the path
+dim(mydf)  #checks dimention rows and columns
+packageVersion("dplyr") # returns Version number of the project
+#The first step of working with data in dplyr is to load the data into what the package authors call a 'data frame tbl' or 'tbl_df'. Use the following code to create a
+# new tbl_df called cran:
+cran <- tbl_df(mydf)
+#Select funciton returns the columns specified with the datatype names in order
+select(cran,ip_id,package,country)
+#select() supports ":" operator on columns
+select(cran,r_arch:country)
+#we can exclude certain columns from dataset using - operator
+select(cran,-time)
+#removing multiple columns in a shot
+select(cran,-(X:size))
+#or numbers can be used as well
+select(cran,-(1:4))
+#filter() used to create subsets 
+filter(cran,package=="swirl")
+#multiple conditions in filter possoble and supports standard comparision operators
+filter(cran, r_version=="3.1.1", country=="US")
+# filter with operator <=
+filter(cran,country=="IN", r_version<="3.0.2")
+#Filter with operator OR
+ filter(cran, country=="US"| country=="IN")
+#filter all non Na r_versions
+ filter(cran,!is.na(r_version))
+ cran2<-select(cran,size:ip_id)
+#filter arrange function orders a dataset by a column in a asc or desc order default is asc
+ arrange(cran2,ip_id)
+ #arrange desc order
+ arrange(cran2,desc(ip_id))
+ #arrange based on multiple columns
+ arrange(cran2, package, ip_id)
+ arrange(cran2, country,desc(r_version), ip_id)
+ cran3<-select(cran,ip_id,package,size)
+ #mutate()
+ #It's common to create a new variable based on the value of one or more variables already in a dataset. The mutate() function does exactly this.
+ mutate(cran3, size_mb =  size/ 2^20,size_gb =  size_mb/ 2^10)
+ #summarize
+ #summarize() is most useful when working with data that has been grouped by the values of a particular variable.
+ summarize(cran, avg_bytes = mean(size))
+ 
+ #Downloading a file Xslx from url
+ mydf<-download.file("https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FDATA.gov_NGAP.xlsx", destfile = "../data/data2.xlsx", method = "auto") 
+ dat <- read.xlsx('../Data/Nag.xlsx',1,rowIndex = 18:23,colIndex = 7:15,header = TRUE)
+ sum(dat$Zip*dat$Ext,na.rm=T)
+ 
+ #Downloading XML
+ install.packages("XML")
+ install.packages("XML")
+ xml<-xmlTreeParse("http://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Frestaurants.xml",useInternal = TRUE)
+ rootNode <- xmlRoot(xml)
+ zip <- xpathSApply(rootNode, "//zipcode", xmlValue)
+ sum(zip == 21231)
+ 
+ #Downloading CSV and loading using table.data package
+ mydf<-download.file("https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Fss06pid.csv", destfile = "../Data/Data4.csv", method = "auto") 
+ DT<-fread( "../Data/Data4.csv")
