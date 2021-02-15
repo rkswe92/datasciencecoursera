@@ -30,7 +30,7 @@ paste(LETTERS, 1:4, sep = "-")
 
 #5
 y <-
-        rnorm(1000) #drawing 1000 inputs from standard normal distribution
+rnorm(1000) #drawing 1000 inputs from standard normal distribution
 my_data <- sample(c(y, z), 100) #drawing samples
 my_na <- is.na(my_data) #to find all the NA in data
 sum(my_na) #sum function
@@ -243,3 +243,45 @@ filter(cran,country=="IN", r_version<="3.0.2")
  #Downloading CSV and loading using table.data package
  mydf<-download.file("https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Fss06pid.csv", destfile = "../Data/Data4.csv", method = "auto") 
  DT<-fread( "../Data/Data4.csv")
+ 
+ #Reading Data from SQL Server
+ #mysql
+ install.packages("RMySQL")
+ library(RMySQL)
+ ucscDb<- dbConnect(MySQL(),user="genome", host="genome-mysql.cse.ucsc.edu")
+ result<- dbGetQuery(ucscDb,"show Databases;"); dbDisconnect(ucscDb) #always close the connection once we have the query executed
+ #picking from specific Db
+ hg19<- dbConnect(MySQL(),user="genome", db="hg19", host="genome-mysql.cse.ucsc.edu")
+ allTables<-dbListTables(hg19)
+ length(allTables)
+ #To Pickup fields
+ allfields<-dbListTables(hg19,"acembly")
+ #Querying with proper Sql query
+ dbGetQuery(hg19,"Select count(*) From acembly")
+ #fetch function
+ query<-dbGetQuery(hg19,"select * from acembly LIMIT 0,10")
+ smalldata<-fetch(query,n=10)
+ dbClearResult(query)
+ dbDisconnect(hg19)
+ #HDF5
+ if (!requireNamespace("BiocManager", quietly = TRUE))
+         install.packages("BiocManager")
+ BiocManager::install()
+ #Web
+ install.packages("rvest") #used for html functions
+ install.packages("dplyr") #used for filtering data
+ library(rvest)
+ library(dplyr)
+ link<-"https://www.imdb.com/chart/top/?ref_=nv_mv_100"
+ page<-read_html(link)
+ name<- page %>% html_nodes(".titleColumn a") %>% html_text()
+ data.frame(name)
+ ##httr package
+ install.packages("httr")
+ library(httr)
+ html2<-GET(link)
+ content2<-content(html2,as="text")
+ parsedHtml<-htmlParse(content2,asText=TRUE)
+ xpathSApply(parsedHtml,"//*[contains(concat( \" \", @class, \" \" ), concat( \" \", \"titleColumn\", \" \" ))]//a\"",xmlvalue)
+ 
+ #Reading from APIs
